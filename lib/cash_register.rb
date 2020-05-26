@@ -27,9 +27,13 @@ class CashRegister
   end
 
   def apply_discount
-    discount_by = 1.to_f - (@employee_discount.to_f/100.to_f)
-    @total = @total * discount_by
-    return "After the discount, the total comes to $#{@total.round}."
+    if @employee_discount == 0
+      return "There is no discout to apply."
+    else
+      discount_by = 1.to_f - (@employee_discount.to_f/100.to_f)
+      @total = @total * discount_by
+      return "After the discount, the total comes to $#{@total.round}."
+    end
   end
 
 end
