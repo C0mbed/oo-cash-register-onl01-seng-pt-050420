@@ -19,11 +19,15 @@ class CashRegister
   end
 
   def add_item(name, price, quantity=0)
-    @items << name
     if quantity != 0
+      count = quantity
+      while count > 0
+        @items << name
+      end
       adjusted_for_quantity = price * quantity
       @total += adjusted_for_quantity
     else
+      @items << name
       @total += price
     end
   end
