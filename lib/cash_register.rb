@@ -2,11 +2,12 @@ require 'pry'
 
 class CashRegister
 
-  attr_accessor :discount, :total
+  attr_accessor :discount, :total, :items
 
   def initialize(employee_discount=0)
     @total = 0
     @employee_discount = employee_discount
+    @items = []
   end
 
   def discount
@@ -18,6 +19,7 @@ class CashRegister
   end
 
   def add_item(name, price, quantity=0)
+    @items << name
     if quantity != 0
       adjusted_for_quantity = price * quantity
       @total += adjusted_for_quantity
@@ -34,6 +36,10 @@ class CashRegister
       @total = @total * discount_by
       return "After the discount, the total comes to $#{@total.round}."
     end
+  end
+
+  def items
+    @items
   end
 
 end
